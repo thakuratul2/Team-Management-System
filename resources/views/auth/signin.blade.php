@@ -54,7 +54,7 @@
                     class="p-6 pb-0 mb-0 bg-transparent border-b-0 rounded-t-2xl">
                     <h3
                       class="relative z-10 font-bold text-transparent bg-gradient-to-tl from-blue-600 to-cyan-400 bg-clip-text">
-                      Welcome back
+                      Welcome
                     </h3>
                     <p class="mb-0">Enter your email and password to sign in</p>
                   </div>
