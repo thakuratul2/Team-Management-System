@@ -56,8 +56,14 @@ class LoginController extends Controller
 }
 
 
-    public function logout()
+    public function logout(Request $request)
     {
-        // Logic for handling logout
+        // Remove user session data
+        $request->session()->forget(['user_id', 'user_name', 'user_email']);
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Logged out successfully!');
     }
 }
