@@ -61,24 +61,68 @@
                   <div class="flex-auto p-6">
                     @if ($errors->has('email'))
                       <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                          // Simple toast implementation
-                          let toast = document.createElement('div');
-                          toast.innerText = "{{ $errors->first('email') }}";
-                          toast.style.position = 'fixed';
-                          toast.style.top = '20px';
-                          toast.style.right = '20px';
-                          toast.style.background = 'rgba(255, 0, 0, 0.9)';
-                          toast.style.color = '#fff';
-                          toast.style.padding = '12px 24px';
-                          toast.style.borderRadius = '8px';
-                          toast.style.zIndex = '9999';
-                          toast.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
-                          document.body.appendChild(toast);
-                          setTimeout(function() {
-                            toast.remove();
-                          }, 3500);
-                        });
+                      document.addEventListener('DOMContentLoaded', function() {
+                        // Simple toast implementation
+                        let toast = document.createElement('div');
+                        toast.innerText = "{{ $errors->first('email') }}";
+                        toast.style.position = 'fixed';
+                        toast.style.top = '20px';
+                        toast.style.right = '20px';
+                        toast.style.background = 'rgba(255, 0, 0, 0.9)';
+                        toast.style.color = '#fff';
+                        toast.style.padding = '12px 24px';
+                        toast.style.borderRadius = '8px';
+                        toast.style.zIndex = '9999';
+                        toast.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                        document.body.appendChild(toast);
+                        setTimeout(function() {
+                        toast.remove();
+                        }, 3500);
+                      });
+                      </script>
+                    @elseif ($errors->has('password'))
+                      <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                        // Simple toast implementation
+                        let toast = document.createElement('div');
+                        toast.innerText = "{{ $errors->first('password') }}";
+                        toast.style.position = 'fixed';
+                        toast.style.top = '20px';
+                        toast.style.right = '20px';
+                        toast.style.background = 'rgba(255, 0, 0, 0.9)';
+                        toast.style.color = '#fff';
+                        toast.style.padding = '12px 24px';
+                        toast.style.borderRadius = '8px';
+                        toast.style.zIndex = '9999';
+                        toast.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                        document.body.appendChild(toast);
+                        setTimeout(function() {
+                        toast.remove();
+                        }, 3500);
+                      });
+                      </script>
+                    @endif
+
+                    @if (session('success'))
+                      <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                        // Success toast implementation
+                        let toast = document.createElement('div');
+                        toast.innerText = "{{ session('success') }}";
+                        toast.style.position = 'fixed';
+                        toast.style.top = '20px';
+                        toast.style.right = '20px';
+                        toast.style.background = 'rgba(0, 180, 42, 0.9)';
+                        toast.style.color = '#fff';
+                        toast.style.padding = '12px 24px';
+                        toast.style.borderRadius = '8px';
+                        toast.style.zIndex = '9999';
+                        toast.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                        document.body.appendChild(toast);
+                        setTimeout(function() {
+                        toast.remove();
+                        }, 3500);
+                      });
                       </script>
                     @endif
                     <form role="form" method="POST" action="{{ route('login.post') }}">
