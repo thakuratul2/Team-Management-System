@@ -59,18 +59,85 @@
                     <p class="mb-0">Enter your email and password to sign in</p>
                   </div>
                   <div class="flex-auto p-6">
+                    @if ($errors->has('email'))
+                      <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                        // Simple toast implementation
+                        let toast = document.createElement('div');
+                        toast.innerText = "{{ $errors->first('email') }}";
+                        toast.style.position = 'fixed';
+                        toast.style.top = '20px';
+                        toast.style.right = '20px';
+                        toast.style.background = 'rgba(255, 0, 0, 0.9)';
+                        toast.style.color = '#fff';
+                        toast.style.padding = '12px 24px';
+                        toast.style.borderRadius = '8px';
+                        toast.style.zIndex = '9999';
+                        toast.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                        document.body.appendChild(toast);
+                        setTimeout(function() {
+                        toast.remove();
+                        }, 3500);
+                      });
+                      </script>
+                    @elseif ($errors->has('password'))
+                      <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                        // Simple toast implementation
+                        let toast = document.createElement('div');
+                        toast.innerText = "{{ $errors->first('password') }}";
+                        toast.style.position = 'fixed';
+                        toast.style.top = '20px';
+                        toast.style.right = '20px';
+                        toast.style.background = 'rgba(255, 0, 0, 0.9)';
+                        toast.style.color = '#fff';
+                        toast.style.padding = '12px 24px';
+                        toast.style.borderRadius = '8px';
+                        toast.style.zIndex = '9999';
+                        toast.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                        document.body.appendChild(toast);
+                        setTimeout(function() {
+                        toast.remove();
+                        }, 3500);
+                      });
+                      </script>
+                    @endif
+
+                    @if (session('success'))
+                      <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                        // Success toast implementation
+                        let toast = document.createElement('div');
+                        toast.innerText = "{{ session('success') }}";
+                        toast.style.position = 'fixed';
+                        toast.style.top = '20px';
+                        toast.style.right = '20px';
+                        toast.style.background = 'rgba(0, 180, 42, 0.9)';
+                        toast.style.color = '#fff';
+                        toast.style.padding = '12px 24px';
+                        toast.style.borderRadius = '8px';
+                        toast.style.zIndex = '9999';
+                        toast.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                        document.body.appendChild(toast);
+                        setTimeout(function() {
+                        toast.remove();
+                        }, 3500);
+                      });
+                      </script>
+                    @endif
                     <form role="form" method="POST" action="{{ route('login.post') }}">
+                      @csrf
                       <label class="mb-2 ml-1 font-bold text-xs text-slate-700"
-                        >Email</label
+                      >Email</label
                       >
                       <div class="mb-4">
-                        <input
-                          type="email"
-                          class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
-                          placeholder="Email"
-                          aria-label="Email"
-                          name="email"
-                          aria-describedby="email-addon" />
+                      <input
+                        type="email"
+                        class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
+                        placeholder="Email"
+                        aria-label="Email"
+                        name="email"
+                        aria-describedby="email-addon" />
                       </div>
                       <label class="mb-2 ml-1 font-bold text-xs text-slate-700"
                         >Password</label

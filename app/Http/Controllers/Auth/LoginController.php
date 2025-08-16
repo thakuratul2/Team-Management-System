@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -14,23 +16,54 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        // Logic for handling login
-        dd($request->all()); // Debugging line to check request data
-        $credentials = $request->only('email', 'password');
-        dd($credentials); // Debugging line to check credentials
-        if (auth()->attempt($credentials)) {
-            // Authentication passed
-            return redirect()->intended('dashboard');
+    // Logic for handling login
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|min:6',
+    ]);
+
+    
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+    $user = User::where('email', $email)->first();
+
+    if ($user && password_verify($password, $user->password)) {
+        
+            session([
+                'user_id' => $user->id,
+                'user_name' => $user->name,
+                'user_email' => $user->email,
+            ]);
+    
+            $request->session()->regenerate();
+            
+            auth()->login($user);
+            return redirect()->route('dashboard')->with('success', 'Login successful!');
+
         }
-        // Authentication failed
+
+    // Authentication failed
+    if (!$user) {
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'The provided email does not match our records.',
         ]);
-
+    } else {
+        return back()->withErrors([
+            'password' => 'The provided password is incorrect.',
+        ]);
     }
+}
 
-    public function logout()
+
+    public function logout(Request $request)
     {
-        // Logic for handling logout
+        // Remove user session data
+        $request->session()->forget(['user_id', 'user_name', 'user_email']);
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Logged out successfully!');
     }
 }
