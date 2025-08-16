@@ -15,9 +15,12 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         // Logic for handling login
-        dd($request->all()); // Debugging line to check request data
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
         $credentials = $request->only('email', 'password');
-        dd($credentials); // Debugging line to check credentials
+       
         if (auth()->attempt($credentials)) {
             // Authentication passed
             return redirect()->intended('dashboard');
