@@ -219,14 +219,14 @@
             </a>
         </li>
         <!-- Pages -->
-        <li class="menu-item ">
+        <li class="menu-item {{ request()->routeIs('account.index') ? 'active' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div class="text-truncate" data-i18n="Account Settings">Account Settings</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item ">
-                    <a href="#" class="menu-link">
+                <li class="menu-item {{ request()->routeIs('account.index') ? 'active' : '' }}">
+                    <a href="{{route('account.index')}}" class="menu-link">
                         <div class="text-truncate" data-i18n="Account">Account</div>
                     </a>
                 </li>
