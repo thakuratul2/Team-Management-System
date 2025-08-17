@@ -12,8 +12,13 @@ id="layout-navbar">
     <div class="navbar-nav align-items-center">
         <div class="nav-item d-flex align-items-center">
 
-            <span class="text-body fw-bold">
-                {{-- z --}}
+           <span class="text-body fw-bold">
+                Hello, {{ ucfirst($user_name) }} 👋
+                @if($greeting_message < 19)
+                    {{ $greeting_message }}
+                @else
+                {{ $greeting_message }}
+                @endif
             </span>
         </div>
     </div>
@@ -221,9 +226,9 @@ id="layout-navbar">
                 href="javascript:void(0);"
                 data-bs-toggle="dropdown">
                 <div class="avatar avatar-online">
-                    {{-- @foreach($user_details as $user)
+                    @foreach($user_details as $user)
                     <img  src="{{ $user->profile_pic ? asset('uploads/profile_pics/' . $user->profile_pic) : asset('img/avatars/1.png') }}"
-                          alt class="w-px-40 h-auto rounded-circle" /> --}}
+                          alt class="w-px-40 h-auto rounded-circle" />
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -233,14 +238,14 @@ id="layout-navbar">
                             <div class="flex-shrink-0 me-3">
                                 <div class="avatar avatar-online">
 
-                                    {{-- <img
+                                    <img
                                         src="{{ $user->profile_pic ? asset('uploads/profile_pics/' . $user->profile_pic) : asset('img/avatars/1.png') }}"
-                                         alt class="w-px-40 h-auto rounded-circle" /> --}}
+                                         alt class="w-px-40 h-auto rounded-circle" />
                                 </div>
-                                {{-- @endforeach --}}
+                                @endforeach
                             </div>
                             <div class="flex-grow-1">
-                                {{-- <h6 class="mb-0">{{ ucfirst($user_name) }}</h6> --}}
+                                <h6 class="mb-0">{{ ucfirst($user_name) }}</h6>
                                 <small class="text-muted">Admin</small>
                             </div>
                         </div>

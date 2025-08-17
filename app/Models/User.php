@@ -45,4 +45,32 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function getFullAddressAttribute()
+    {
+        return $this->address . ', ' . $this->state . ', ' . $this->country . ', ' . $this->zip_code;
+    }
+
+    public function getFullDetailsAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name . ', ' . $this->email . ', ' . $this->organization . ', '
+            . $this->designation . ', ' . $this->phone_number . ', ' . $this->address . ',
+            ' . $this->state . ', ' . $this->country . ', ' . $this->zip_code . ',
+             ' . $this->language . ', ' . $this->timezone;
+    }
+
+    public function getFullNameAndEmailAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name . ' (' . $this->email . ')';
+    }
+
+    public static function getAccountDetails()
+    {
+        return self::all();
+    }
 }
