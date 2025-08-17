@@ -228,7 +228,7 @@ id="layout-navbar">
                 <div class="avatar avatar-online">
                     @foreach($user_details as $user)
                     <img  src="{{ $user->profile_pic ? asset('uploads/profile_pics/' . $user->profile_pic) : asset('img/avatars/1.png') }}"
-                          alt class="w-px-40 h-auto rounded-circle" />
+                          alt class="w-px-40" />
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
