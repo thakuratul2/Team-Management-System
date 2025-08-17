@@ -44,15 +44,14 @@ class AccountController extends Controller
 
     public function store(Request $request)
     {
+    
         try {
 
 
-            if (empty($request->first_name)) {
+            if (empty($request->name)) {
                 return back()->with('error', 'First name is required.');
             }
-            if (empty($request->last_name)) {
-                return back()->with('error', 'Last name is required.');
-            }
+
             if (empty($request->email)) {
                 return back()->with('error', 'Email is required.');
             }
@@ -64,6 +63,9 @@ class AccountController extends Controller
             }
             if (empty($request->phone_number)) {
                 return back()->with('error', 'Phone number is required.');
+            }
+            if(empty($request->department)) {
+                return back()->with('error', 'Department is required.');
             }
             if (empty($request->address)) {
                 return back()->with('error', 'Address is required.');
@@ -81,9 +83,7 @@ class AccountController extends Controller
             if (empty($request->language)) {
                 return back()->with('error', 'Language is required.');
             }
-            if (empty($request->timezone)) {
-                return back()->with('error', 'Timezone is required.');
-            }
+            
 
             return User::storeAccountDetails($request);
 

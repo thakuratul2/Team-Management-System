@@ -75,23 +75,17 @@
 
                                         <div class="row g-6">
                                             <div class="col-md-6">
-                                                <label for="firstName" class="form-label">First Name</label>
+                                                <label for="name" class="form-label">Enter your Name</label>
                                                 <input
                                                     class="form-control"
                                                     type="text"
-                                                    id="firstName"
-                                                    name="first_name"
+                                                    id="name"
+                                                    name="name"
 
-                                                    value="{{ucfirst($user->first_name)}}"
+                                                    value="{{ucfirst($user->name)}}"
                                                     autofocus />
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="lastName" class="form-label">Last Name</label>
-                                                <input class="form-control" type="text"
-                                                       name="last_name" id="lastName"
-
-                                                       value="{{ucfirst($user->last_name)}}"/>
-                                            </div>
+                                           
                                             <div class="col-md-6">
                                                 <label for="email" class="form-label">E-mail</label>
                                                 <input
@@ -100,7 +94,7 @@
                                                     id="email"
                                                     name="email"
 
-                                                    value="{{ucfirst($user->email)}}"
+                                                    value="{{$user->email}}"
                                                     placeholder="john.doe@example.com" />
                                             </div>
                                             <div class="col-md-6">
@@ -123,6 +117,28 @@
                                                     <option value="analyst" {{ $user->designation === 'analyst' ? 'selected' : '' }}>ANALYST</option>
                                                     <option value="partner" {{ $user->designation === 'partner' ? 'selected' : '' }}>PARTNER</option>
                                                     <option value="manager" {{ $user->designation === 'manager' ? 'selected' : '' }}>MANAGER</option>
+                                                    <option value="developer" {{ $user->designation === 'developer' ? 'selected' : '' }}>JUNIOR SOFTWARE DEVELOPER</option>
+                                                    <option value="designer" {{ $user->designation === 'designer' ? 'selected' : '' }}>DESIGNER</option>
+                                                    <option value="qa" {{ $user->designation === 'qa' ? 'selected' : '' }}>QA</option>
+                                                    <option value="support" {{ $user->designation === 'support' ? 'selected' : '' }}>SUPPORT</option>
+                                                    <option value="senior" {{ $user->designation === 'senior' ? 'selected' : '' }}>SENIOR SOFTWARE DEVELOPER</option>
+                                                    <option value="intern" {{ $user->designation === 'intern' ? 'selected' : '' }}>INTERN</option>
+                                                    <option value="lead" {{ $user->designation === 'lead' ? 'selected' : '' }}>TEAM LEADER</option>
+                                                    <option value="manager" {{ $user->designation === 'manager' ? 'selected' : '' }}>MANAGER</option>
+
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="department" class="form-label">Department</label>
+                                                <select id="department" name="department"
+                                                        class="select2 form-select">
+                                                    <option value="" disabled {{ !$user->department ? 'selected' : '' }}>Select Department</option>
+                                                    <option value="it" {{ $user->department === 'it' ? 'selected' : '' }}>IT</option>
+                                                    <option value="sales" {{ $user->department === 'sales' ? 'selected' : '' }}>Sales</option>
+                                                    <option value="hr" {{ $user->department === 'hr' ? 'selected' : '' }}>HR</option>
+                                                    <option value="admin" {{ $user->department === 'admin' ? 'selected' : '' }}>System Admin</option>
+                                                    <option value="management" {{ $user->department === 'management' ? 'selected' : '' }}>Management</option>
                                                 </select>
                                             </div>
 
@@ -206,18 +222,16 @@
                                                 </select>
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <label for="timeZones" class="form-label">Timezone</label>
-                                                <select id="timeZones" name="timezone" class="select2 form-select">
-                                                    <option value="" disabled {{ !$user->timezone ? 'selected' : '' }}>Select Timezone</option>
-                                                    <option value="internaldatetime" {{ $user->timezone === 'internaldatetime' ? 'selected' : '' }}>(GMT-12:00) International Date Line West</option>
-                                                    <option value="midway" {{ $user->timezone === 'midway' ? 'selected' : '' }}>(GMT-11:00) Midway Island, Samoa</option>
-                                                    <option value="hawaii" {{ $user->timezone === 'hawaii' ? 'selected' : '' }}>(GMT-10:00) Hawaii</option>
-                                                    <option value="alaska" {{ $user->timezone === 'alaska' ? 'selected' : '' }}>(GMT-09:00) Alaska</option>
-                                                    <option value="pacific" {{ $user->timezone === 'pacific' ? 'selected' : '' }}>(GMT-08:00) Pacific Time (US & Canada)</option>
-                                                    <option value="tijuna" {{ $user->timezone === 'tijuna' ? 'selected' : '' }}>(GMT-08:00) Tijuana, Baja California</option>
-                                                    <option value="kolkata" {{ $user->timezone === 'kolkata' ? 'selected' : '' }}>(GMT+05:30) Kolkata</option>
-                                                </select>
+                                           <div class="col-md-6">
+                                                <label for="password" class="form-label">Generate Password</label>
+                                                <input
+                                                    class="form-control"
+                                                    type="password"
+                                                    id="password"
+                                                    name="password"
+
+                                                    value="{{$user->password}}"
+                                                    placeholder="Min. Six Digit" />
                                             </div>
 
 
